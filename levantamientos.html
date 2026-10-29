@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4a3326">
+  <title>Taller de Maderas</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div id="pagina" hidden>
+    <div class="tdm-card">
+      <div class="tdm-card-cab">
+        <div class="input-group" style="max-width:380px">
+          <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+          <input class="form-control" id="buscar" type="search" placeholder="Buscar folio, cliente, dirección…">
+        </div>
+        <span class="small text-suave ms-auto" id="conteo"></span>
+      </div>
+      <div class="table-responsive" id="lista"></div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalLev" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-fullscreen-sm-down"><div class="modal-content">
+      <form id="formLev" novalidate>
+        <div class="modal-header"><h5 class="modal-title" id="tituloModal">Nuevo levantamiento</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+        <div class="modal-body">
+          <input type="hidden" name="registro_id">
+          <div class="row g-3">
+            <div class="col-sm-4"><label class="form-label">Folio</label><input class="form-control" id="folio" disabled placeholder="Se asigna al guardar"></div>
+            <div class="col-sm-8"><label class="form-label" for="lCliente">Cliente <span class="text-danger">*</span></label><input class="form-control" id="lCliente" name="cliente" maxlength="150" required></div>
+            <div class="col-sm-6"><label class="form-label" for="lTelefono">Teléfono</label><input class="form-control" id="lTelefono" name="telefono" type="tel" maxlength="40"></div>
+            <div class="col-sm-6"><label class="form-label" for="lFecha">Fecha</label><input class="form-control" id="lFecha" name="fecha" type="date"></div>
+            <div class="col-12"><label class="form-label" for="lDireccion">Dirección</label><input class="form-control" id="lDireccion" name="direccion" maxlength="300"></div>
+            <div class="col-12"><label class="form-label" for="lNotas">Notas y medidas</label><textarea class="form-control" id="lNotas" name="notas" rows="6" maxlength="10000" placeholder="Ej. Muro A: 3.20 m de largo × 2.40 m de alto…"></textarea></div>
+            <div class="col-12">
+              <label class="form-label" for="lPdf">PDF del levantamiento</label>
+              <div id="pdfActual" class="mb-2"></div>
+              <input class="form-control" id="lPdf" name="pdf" type="file" accept="application/pdf,image/jpeg,image/png,image/webp,image/gif">
+              <div class="form-text">PDF o foto, máximo <span class="maxmb"></span> MB.</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-madera" data-bs-dismiss="modal">Cancelar</button><button type="submit" class="btn btn-primary">Guardar</button></div>
+      </form>
+    </div></div>
+  </div>
+
+  <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/demo.js"></script>
+<script src="js/comun.js"></script>
+  <script src="js/levantamientos.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4a3326">
+  <title>Taller de Maderas</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div id="pagina" hidden>
+    <div class="tdm-card">
+      <div class="tdm-card-cab">
+        <div class="input-group" style="max-width:340px">
+          <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+          <input class="form-control" id="buscar" type="search" placeholder="Buscar folio o cliente…">
+        </div>
+        <select class="form-select" id="filtroEstatus" style="max-width:180px" aria-label="Filtrar por estatus"><option value="">Todos los estatus</option></select>
+        <span class="small text-suave ms-auto" id="conteo"></span>
+      </div>
+      <div class="table-responsive" id="lista"></div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalCot" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-fullscreen-md-down"><div class="modal-content">
+      <form id="formCot" novalidate>
+        <div class="modal-header"><h5 class="modal-title" id="tituloModal">Nueva cotización</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+        <div class="modal-body">
+          <input type="hidden" name="registro_id">
+          <div class="row g-3">
+            <div class="col-md-3"><label class="form-label">Folio</label><input class="form-control" id="folio" disabled placeholder="Se asigna al guardar"></div>
+            <div class="col-md-5"><label class="form-label" for="cLev">Levantamiento</label><select class="form-select" id="cLev" name="levantamiento_id"></select></div>
+            <div class="col-md-4"><label class="form-label" for="cFecha">Fecha</label><input class="form-control" id="cFecha" name="fecha" type="date"></div>
+            <div class="col-md-8"><label class="form-label" for="cCliente">Cliente <span class="text-danger">*</span></label><input class="form-control" id="cCliente" name="cliente" maxlength="150" required></div>
+            <div class="col-md-4"><label class="form-label" for="cEstatus">Estatus</label><select class="form-select" id="cEstatus" name="estatus"></select></div>
+          </div>
+
+          <div class="mt-4 mb-2 d-flex align-items-center">
+            <span class="fw-bold" style="color:var(--nogal)">Conceptos</span>
+            <button type="button" class="btn btn-sm btn-madera ms-auto" id="btnConcepto"><i class="bi bi-plus-lg me-1"></i>Agregar concepto</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm align-middle">
+              <thead><tr><th style="min-width:240px">Descripción</th><th style="width:110px">Cantidad</th><th style="width:150px">Precio unitario</th><th style="width:140px" class="text-end">Importe</th><th style="width:44px"></th></tr></thead>
+              <tbody id="conceptos"></tbody>
+              <tfoot><tr><td colspan="3" class="text-end fw-bold">Total</td><td class="text-end fw-bold fs-5" id="total">$0.00</td><td></td></tr></tfoot>
+            </table>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-7"><label class="form-label" for="cNotas">Notas</label><textarea class="form-control" id="cNotas" name="notas" rows="3" maxlength="5000" placeholder="Condiciones, tiempos de entrega, anticipo…"></textarea></div>
+            <div class="col-md-5">
+              <label class="form-label" for="cPdf">PDF de la cotización</label>
+              <div id="pdfActual" class="mb-2"></div>
+              <input class="form-control" id="cPdf" name="pdf" type="file" accept="application/pdf,image/jpeg,image/png,image/webp,image/gif">
+              <div class="form-text">PDF o imagen, máximo <span class="maxmb"></span> MB.</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-madera" data-bs-dismiss="modal">Cancelar</button><button type="submit" class="btn btn-primary">Guardar</button></div>
+      </form>
+    </div></div>
+  </div>
+
+  <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/demo.js"></script>
+<script src="js/comun.js"></script>
+  <script src="js/cotizaciones.js"></script>
+</body>
+</html>

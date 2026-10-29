@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4a3326">
+  <title>Taller de Maderas</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="acceso-fondo">
+    <div class="acceso-caja">
+      <div class="text-center mb-3">
+        <img src="img/logo.svg" class="logo" alt="Taller de Maderas">
+        <h1>Taller de Maderas</h1>
+        <p class="text-suave mb-0" id="subtitulo">Inicia sesión para continuar</p>
+      </div>
+
+      <form id="formLogin" hidden novalidate>
+        <div class="mb-3">
+          <label class="form-label" for="lUsuario">Usuario o correo</label>
+          <input class="form-control form-control-lg" id="lUsuario" name="usuario" autocomplete="username" required autofocus>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="lContrasena">Contraseña</label>
+          <input class="form-control form-control-lg" id="lContrasena" name="contrasena" type="password" autocomplete="current-password" required>
+        </div>
+        <div class="alert alert-danger py-2 small" id="errorLogin" hidden></div>
+        <button class="btn btn-primary btn-lg w-100" type="submit">Entrar</button>
+      </form>
+
+      <form id="formSetup" hidden novalidate>
+        <div class="alert alert-warning small">
+          <i class="bi bi-stars me-1"></i><strong>Primera vez.</strong> Crea tu cuenta. Después podrás crear la cuenta de tu socio en la sección <em>Usuarios</em>.
+        </div>
+        <div class="mb-2">
+          <label class="form-label" for="sNombre">Tu nombre</label>
+          <input class="form-control" id="sNombre" name="nombre" required maxlength="80" placeholder="Ej. Juan Pérez">
+        </div>
+        <div class="mb-2">
+          <label class="form-label" for="sUsuario">Usuario (para entrar)</label>
+          <input class="form-control" id="sUsuario" name="usuario" required maxlength="40" autocomplete="username" placeholder="Ej. juan">
+          <div class="form-text">Sin espacios ni acentos.</div>
+        </div>
+        <div class="mb-2">
+          <label class="form-label" for="sCorreo">Correo (opcional)</label>
+          <input class="form-control" id="sCorreo" name="correo" type="email" maxlength="120" autocomplete="email">
+        </div>
+        <div class="mb-2">
+          <label class="form-label" for="sContrasena">Contraseña</label>
+          <input class="form-control" id="sContrasena" name="contrasena" type="password" minlength="8" required autocomplete="new-password">
+          <div class="form-text">Mínimo 8 caracteres.</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="sContrasena2">Repite la contraseña</label>
+          <input class="form-control" id="sContrasena2" type="password" minlength="8" required autocomplete="new-password">
+        </div>
+        <div class="alert alert-danger py-2 small" id="errorSetup" hidden></div>
+        <button class="btn btn-primary btn-lg w-100" type="submit">Crear mi cuenta y entrar</button>
+      </form>
+    </div>
+  </div>
+  <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/demo.js"></script>
+<script src="js/comun.js"></script>
+  <script src="js/acceso.js"></script>
+</body>
+</html>

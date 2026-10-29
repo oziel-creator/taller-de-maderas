@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4a3326">
+  <title>Taller de Maderas</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div id="pagina" hidden>
+    <div class="tablero-barra">
+      <div class="input-group buscar">
+        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+        <input class="form-control" id="buscar" type="search" placeholder="Buscar por ID, folio o cliente…" autocomplete="off">
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-madera dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" type="button">
+          <i class="bi bi-funnel me-1"></i>Estatus <span class="badge text-bg-light" id="numFiltro"></span>
+        </button>
+        <div class="dropdown-menu p-3" style="min-width: 290px; max-height: 70vh; overflow:auto">
+          <div class="d-flex gap-2 mb-2">
+            <button class="btn btn-sm btn-outline-primary" id="filtroTodos" type="button">Todos</button>
+            <button class="btn btn-sm btn-outline-primary" id="filtroActivos" type="button">Sin finalizados</button>
+            <button class="btn btn-sm btn-outline-secondary" id="filtroNinguno" type="button">Ninguno</button>
+          </div>
+          <div id="filtros"></div>
+        </div>
+      </div>
+      <span class="small text-suave ms-auto d-none d-md-inline"><i class="bi bi-arrows-move me-1"></i>Arrastra las tarjetas para cambiar estatus o prioridad</span>
+    </div>
+    <div class="small text-suave d-md-none mb-2"><i class="bi bi-arrow-left-right me-1"></i>Desliza a los lados para ver todas las columnas. Mantén presionada una tarjeta para moverla.</div>
+    <div class="tablero" id="tablero"></div>
+  </div>
+  <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="vendor/sortablejs/Sortable.min.js"></script>
+  <script src="js/demo.js"></script>
+<script src="js/comun.js"></script>
+  <script src="js/tablero.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4a3326">
+  <title>Taller de Maderas</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div id="pagina" hidden>
+    <div class="alert alert-light border small"><i class="bi bi-info-circle me-1"></i>Todas las cuentas tienen los mismos permisos: cualquiera puede crear cuentas, cambiar contraseñas y desactivar a otros usuarios.</div>
+    <div class="tdm-card"><div class="table-responsive" id="lista"></div></div>
+  </div>
+
+  <div class="modal fade" id="modalUsuario" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-sm-down"><div class="modal-content">
+      <form id="formUsuario" novalidate>
+        <div class="modal-header"><h5 class="modal-title" id="tituloModal">Nuevo usuario</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+        <div class="modal-body">
+          <input type="hidden" name="registro_id">
+          <div class="mb-3"><label class="form-label" for="uNombre">Nombre <span class="text-danger">*</span></label><input class="form-control" id="uNombre" name="nombre" maxlength="80" required></div>
+          <div class="mb-3"><label class="form-label" for="uUsuario">Usuario <span class="text-danger">*</span></label><input class="form-control" id="uUsuario" name="usuario" maxlength="40" required autocomplete="off"><div class="form-text">Sin espacios ni acentos. Ej. maria</div></div>
+          <div class="mb-3"><label class="form-label" for="uCorreo">Correo (opcional)</label><input class="form-control" id="uCorreo" name="correo" type="email" maxlength="120" autocomplete="off"></div>
+          <div class="mb-1" id="grupoContrasena"><label class="form-label" for="uContrasena">Contraseña <span class="text-danger">*</span></label><input class="form-control" id="uContrasena" name="contrasena" type="password" minlength="8" autocomplete="new-password"><div class="form-text">Mínimo 8 caracteres.</div></div>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-madera" data-bs-dismiss="modal">Cancelar</button><button type="submit" class="btn btn-primary">Guardar</button></div>
+      </form>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="modalContrasena" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <form id="formContrasena" novalidate>
+        <div class="modal-header"><h5 class="modal-title">Cambiar contraseña</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+        <div class="modal-body">
+          <input type="hidden" name="registro_id">
+          <p class="small text-suave" id="contrasenaDe"></p>
+          <div class="mb-3"><label class="form-label" for="cNueva">Nueva contraseña</label><input class="form-control" id="cNueva" name="contrasena" type="password" minlength="8" required autocomplete="new-password"></div>
+          <div class="mb-1"><label class="form-label" for="cNueva2">Repite la contraseña</label><input class="form-control" id="cNueva2" type="password" minlength="8" required autocomplete="new-password"></div>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-madera" data-bs-dismiss="modal">Cancelar</button><button type="submit" class="btn btn-primary">Cambiar contraseña</button></div>
+      </form>
+    </div></div>
+  </div>
+
+  <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/demo.js"></script>
+<script src="js/comun.js"></script>
+  <script src="js/usuarios.js"></script>
+</body>
+</html>

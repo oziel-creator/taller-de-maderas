@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4a3326">
+  <title>Taller de Maderas</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div id="pagina" hidden>
+    <div class="d-flex align-items-center gap-2 mb-3 flex-wrap">
+      <a href="tablero.html" class="btn btn-sm btn-madera"><i class="bi bi-arrow-left me-1"></i>Tablero</a>
+      <span class="fw-bold fs-5" id="encabezado">Nueva instalación</span>
+      <span class="badge rounded-pill" id="badgeEstatus"></span>
+    </div>
+    <div class="row g-3">
+      <div class="col-xl-8">
+        <!-- Datos generales -->
+        <div class="tdm-card mb-3">
+          <div class="tdm-card-cab"><h2><i class="bi bi-card-text me-1"></i>Datos generales</h2></div>
+          <div class="tdm-card-cuerpo">
+            <form id="formDatos" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" for="levantamiento_id">Levantamiento</label>
+                  <select class="form-select" id="levantamiento_id" name="levantamiento_id"></select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="cotizacion_id">Cotización</label>
+                  <select class="form-select" id="cotizacion_id" name="cotizacion_id"></select>
+                </div>
+                <div class="col-md-8">
+                  <label class="form-label" for="cliente">Cliente <span class="text-danger">*</span></label>
+                  <input class="form-control" id="cliente" name="cliente" maxlength="150" required>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label" for="fecha_entrega">Fecha de entrega</label>
+                  <input class="form-control" id="fecha_entrega" name="fecha_entrega" type="date">
+                </div>
+                <div class="col-md-8">
+                  <label class="form-label" for="direccion">Dirección</label>
+                  <input class="form-control" id="direccion" name="direccion" maxlength="300">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label" for="estatus">Estatus</label>
+                  <select class="form-select" id="estatus" name="estatus"></select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="descripcion">Descripción</label>
+                  <textarea class="form-control" id="descripcion" name="descripcion" rows="3" maxlength="5000" placeholder="Ej. Cocina en L con alacena, cubierta de madera…"></textarea>
+                </div>
+              </div>
+              <div class="mt-3 d-flex gap-2">
+                <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="bi bi-check-lg me-1"></i>Guardar</button>
+                <button class="btn btn-outline-danger ms-auto" type="button" id="btnEliminar" hidden><i class="bi bi-trash me-1"></i>Eliminar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div id="seccionesExtra" hidden>
+          <!-- Documentos -->
+          <div class="tdm-card mb-3">
+            <div class="tdm-card-cab"><h2><i class="bi bi-folder2-open me-1"></i>Archivos</h2>
+              <span class="small text-suave ms-auto">PDF o imagen</span></div>
+            <div class="tdm-card-cuerpo"><div class="row g-3" id="documentos"></div></div>
+          </div>
+
+          <!-- Validaciones -->
+          <div class="tdm-card mb-3">
+            <div class="tdm-card-cab"><h2><i class="bi bi-patch-check me-1"></i>Documentos de validación</h2></div>
+            <div class="tdm-card-cuerpo">
+              <div id="listaValidaciones" class="mb-3"></div>
+              <form id="formValidacion" class="border rounded-3 p-3 bg-white" novalidate>
+                <div class="fw-semibold mb-2" style="color:var(--nogal)">Agregar versión</div>
+                <div class="row g-2">
+                  <div class="col-md-8">
+                    <label class="form-label small" for="vDescripcion">Descripción</label>
+                    <input class="form-control" id="vDescripcion" name="descripcion" maxlength="2000" placeholder="Ej. Se cambió el color de las puertas">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label small" for="vFecha">Fecha</label>
+                    <input class="form-control" id="vFecha" name="fecha" type="date">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label small" for="vArchivo">Archivo (PDF o imagen)</label>
+                    <input class="form-control" id="vArchivo" name="archivo" type="file" accept="application/pdf,image/jpeg,image/png,image/webp,image/gif">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label small" for="vRender">Foto render</label>
+                    <input class="form-control" id="vRender" name="render" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+                  </div>
+                </div>
+                <button class="btn btn-primary btn-sm mt-3" type="submit"><i class="bi bi-plus-lg me-1"></i>Agregar versión</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Pedidos -->
+          <div class="tdm-card mb-3">
+            <div class="tdm-card-cab"><h2><i class="bi bi-box-seam me-1"></i>Pedidos de material</h2>
+              <button class="btn btn-sm btn-primary ms-auto" id="btnNuevoPedido" type="button"><i class="bi bi-plus-lg me-1"></i>Agregar pedido</button></div>
+            <div class="tdm-card-cuerpo p-0"><div class="table-responsive" id="listaPedidos"></div></div>
+          </div>
+
+          <!-- Fotos -->
+          <div class="tdm-card mb-3">
+            <div class="tdm-card-cab"><h2><i class="bi bi-images me-1"></i>Fotos del resultado final</h2></div>
+            <div class="tdm-card-cuerpo">
+              <form id="formFotos" class="d-flex gap-2 flex-wrap mb-3" novalidate>
+                <input class="form-control" style="max-width:420px" id="inputFotos" name="fotos" type="file" multiple accept="image/jpeg,image/png,image/webp,image/gif">
+                <button class="btn btn-primary" type="submit"><i class="bi bi-upload me-1"></i>Subir fotos</button>
+              </form>
+              <div class="galeria" id="galeria"></div>
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-light border" id="avisoNueva"><i class="bi bi-info-circle me-1"></i>Guarda primero los datos generales; después podrás subir archivos, validaciones, pedidos y fotos.</div>
+      </div>
+
+      <div class="col-xl-4">
+        <div class="tdm-card mb-3" id="cajaVinculos" hidden>
+          <div class="tdm-card-cab"><h2><i class="bi bi-link-45deg me-1"></i>Documentos vinculados</h2></div>
+          <div class="tdm-card-cuerpo" id="vinculos"></div>
+        </div>
+        <div class="tdm-card" id="cajaHistorial" hidden>
+          <div class="tdm-card-cab"><h2><i class="bi bi-clock-history me-1"></i>Historial de estatus</h2></div>
+          <div class="tdm-card-cuerpo"><ul class="historial" id="historial"></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal pedido -->
+  <div class="modal fade" id="modalPedido" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-fullscreen-sm-down"><div class="modal-content">
+      <form id="formPedido" novalidate>
+        <div class="modal-header"><h5 class="modal-title">Pedido de material</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+        <div class="modal-body">
+          <input type="hidden" name="pedido_id">
+          <div class="row g-3">
+            <div class="col-sm-6"><label class="form-label" for="pNumero">Número de pedido</label><input class="form-control" id="pNumero" name="numero_pedido" maxlength="60"></div>
+            <div class="col-sm-6"><label class="form-label" for="pFactura">Número de factura</label><input class="form-control" id="pFactura" name="numero_factura" maxlength="60"></div>
+            <div class="col-sm-8"><label class="form-label" for="pProveedor">Proveedor</label>
+              <select class="form-select" id="pProveedor" name="proveedor_id"></select>
+              <div class="form-text" id="sinProveedores" hidden>Aún no hay proveedores. <a href="proveedores.html" target="_blank">Agrega uno aquí</a> y vuelve a abrir esta ventana.</div></div>
+            <div class="col-sm-4"><label class="form-label" for="pFechaPago">Fecha de pago</label><input class="form-control" id="pFechaPago" name="fecha_pago" type="date"></div>
+            <div class="col-12"><label class="form-label" for="pMaterial">Material</label><textarea class="form-control" id="pMaterial" name="material" rows="2" maxlength="1000" placeholder="Ej. 6 hojas de MDF 18 mm"></textarea></div>
+            <div class="col-sm-6"><label class="form-label" for="pEnchape1">Enchape primario</label><input class="form-control" id="pEnchape1" name="enchape_primario" maxlength="200"></div>
+            <div class="col-sm-6"><label class="form-label" for="pEnchape2">Enchape secundario</label><input class="form-control" id="pEnchape2" name="enchape_secundario" maxlength="200"></div>
+            <div class="col-12"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="pActivo" name="activo" value="1" checked><label class="form-check-label" for="pActivo">Pedido activo</label></div></div>
+          </div>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-madera" data-bs-dismiss="modal">Cancelar</button><button type="submit" class="btn btn-primary">Guardar pedido</button></div>
+      </form>
+    </div></div>
+  </div>
+
+  <!-- Modal foto -->
+  <div class="modal fade" id="modalFoto" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered"><div class="modal-content bg-dark">
+      <div class="modal-body p-1 text-center"><img id="fotoGrande" class="img-fluid" style="max-height:80vh" alt="Foto"></div>
+      <div class="modal-footer border-0 py-1"><a id="fotoAbrir" class="btn btn-sm btn-outline-light" target="_blank" rel="noopener">Abrir original</a><button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Cerrar</button></div>
+    </div></div>
+  </div>
+
+  <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/demo.js"></script>
+<script src="js/comun.js"></script>
+  <script src="js/instalacion.js"></script>
+</body>
+</html>

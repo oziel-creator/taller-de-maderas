@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4a3326">
+  <title>Taller de Maderas</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div id="pagina" hidden>
+    <div class="tdm-card">
+      <div class="tdm-card-cab">
+        <div class="input-group" style="max-width:340px">
+          <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+          <input class="form-control" id="buscar" type="search" placeholder="Buscar proveedor…">
+        </div>
+        <span class="small text-suave ms-auto" id="conteo"></span>
+      </div>
+      <div class="table-responsive" id="lista"></div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalProv" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down"><div class="modal-content">
+      <form id="formProv" novalidate>
+        <div class="modal-header"><h5 class="modal-title" id="tituloModal">Nuevo proveedor</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+        <div class="modal-body">
+          <input type="hidden" name="registro_id">
+          <div class="mb-3"><label class="form-label" for="pNombre">Nombre <span class="text-danger">*</span></label><input class="form-control" id="pNombre" name="nombre" maxlength="120" required></div>
+          <div class="mb-3"><label class="form-label" for="pContacto">Contacto</label><input class="form-control" id="pContacto" name="contacto" maxlength="120" placeholder="Nombre de la persona"></div>
+          <div class="mb-3"><label class="form-label" for="pTelefono">Teléfono</label><input class="form-control" id="pTelefono" name="telefono" type="tel" maxlength="40"></div>
+          <div class="mb-1"><label class="form-label" for="pNotas">Notas</label><textarea class="form-control" id="pNotas" name="notas" rows="3" maxlength="2000" placeholder="Qué materiales vende, horarios, condiciones…"></textarea></div>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-madera" data-bs-dismiss="modal">Cancelar</button><button type="submit" class="btn btn-primary">Guardar</button></div>
+      </form>
+    </div></div>
+  </div>
+
+  <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/demo.js"></script>
+<script src="js/comun.js"></script>
+  <script src="js/proveedores.js"></script>
+</body>
+</html>
